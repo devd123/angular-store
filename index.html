@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gemStore">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Store -AngularJS</title>
+      <!-- Added Css Libs -->
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200' rel='stylesheet' type='text/css'> 
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/font-awesome.min.css" rel="stylesheet">
+      <link href="css/animate.min.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+
+      <!-- Add Javascript Libs -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/angular.min.js"></script>
+      <script src="app.js"></script>
+   </head>
+  
+   <body class="container" ng-controller="StoreController as store">
+      <header>
+      <!-- <h1 class="text-center">Dev Dcompany Crafted Gems</h1> -->
+      <h2 class="text-center">– an shopping store –</h2>
+      </header>  
+
+      <div class="list-group row">
+         <div class="list-group-item col-xs-12" ng-repeat="product in store.products">
+            
+            <div class="col-xs-8" ng-controller="GalleryController as gallery"  ng-show="product.images.length">
+               
+               <div class="img-wrap">
+               <img ng-src="{{product.images[0]}}" />
+               </div>
+               <ul class="img-thumbnails clearfix">
+                  <li class="small-image pull-left thumbnail" ng-repeat="image in product.images" ng-if="$index > 0 ">
+                    <img ng-src="{{image}}"  width="150" height="150"/>
+                  </li>
+               </ul>
+            </div>
+           
+            <div class="col-xs-4">
+               <h2>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h2>
+               <p>{{product.description}}<p>
+            </div>
+
+         </div><!--- Ended item body -- > 
+       <div class="clearfix"></div>
+      </div>
+
+
+   </body><!--- Ended html body -- >
+</html>
