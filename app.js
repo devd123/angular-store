@@ -14,6 +14,17 @@ var app = angular.module('gemStore' , []);
     };
   });
 
+  app.controller('PanelController', function(){
+    this.tab = 1;
+
+    this.selectedTab = function(setTab){
+      this.tab = setTab;
+    };
+    this.isSelected = function (checkTab){
+        return this.tab === checkTab;
+    };
+  });
+
   var gems = [{
       name: 'Azurite',
       description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
@@ -25,7 +36,8 @@ var app = angular.module('gemStore' , []);
       images: [
         "images/product.jpg",
         "images/product1.jpg",
-        "images/product2.jpg"
+        "images/product2.jpg",
+        "images/product3.jpg"
       ],
       reviews: [{
         stars: 5,
@@ -50,6 +62,7 @@ var app = angular.module('gemStore' , []);
         "images/product.jpg",
         "images/product1.jpg",
         "images/product2.jpg",
+        "images/product3.jpg"
       ],
       reviews: [{
         stars: 3,
@@ -73,7 +86,8 @@ var app = angular.module('gemStore' , []);
       images: [
         "images/product.jpg",
         "images/product1.jpg",
-        "images/product2.jpg"
+        "images/product2.jpg",
+        "images/product3.jpg"
       ],
       reviews: [{
         stars: 1,

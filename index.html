@@ -28,9 +28,9 @@
       <div class="list-group row">
          <div class="list-group-item col-xs-12" ng-repeat="product in store.products">
             
-            <div class="col-xs-8" ng-controller="GalleryController as gallery"  ng-show="product.images.length">
+            <div class="col-xs-6" ng-controller="GalleryController as gallery"  ng-show="product.images.length">
                
-               <div class="img-wrap">
+               <div class="img-wrap text-center">
                <img ng-src="{{product.images[0]}}" />
                </div>
                <ul class="img-thumbnails clearfix">
@@ -40,9 +40,34 @@
                </ul>
             </div>
            
-            <div class="col-xs-4">
-               <h2>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h2>
-               <p>{{product.description}}<p>
+            <div class="col-xs-6">
+               <h2>{{product.name | uppercase}} <em class="pull-right">{{product.price | currency}}</em></h2>
+               <section ng-controller="PanelController as panel">
+                  <ul class="nav nav-pills">
+                     <li ng-class="panel.isSelected(1)"><a href="" ng-click="panel.selectedTab(1)">Description</a></li>
+                     <li ng-class="panel.isSelected(2)"><a href="" ng-click="panel.selectedTab(2)">Specification</a></li>
+                     <li ng-class="panel.isSelected(3)"><a href="" ng-click="panel.selectedTab(3)">Reviews</a></li>
+                  </ul>
+                   <div class="clearfix"></div>
+                  <!---start Pannel section -- > 
+                  <div class="panel" ng-show="panel.isSelected(1)">
+                     <h4>Dessciption</h4>
+                     <P>{{ product.description }}</P>
+                  </div>
+                  <div class="panel" ng-show="panel.isSelected(2)">
+                     <h4>Sprcification</h4>
+                     <blockquote>shine : {{ product.shine }}  rarity : {{ product.rarity }}  color : {{ product.color }} </blockquote>
+                  </div>
+                  <div class="panel" ng-show="panel.isSelected(3)">
+                     <h4>Revies</h4>
+                     <blockquote ng-repeat="review in product.reviews">
+                        <b>Stars : {{ review.stars}}</b>
+                        {{ review.body}}
+                        <cite>By : {{ review.author}}</cite>
+                     </blockquote>
+                  </div>
+                  <!---end Pannel section -- > 
+               </section>
             </div>
 
          </div><!--- Ended item body -- > 
